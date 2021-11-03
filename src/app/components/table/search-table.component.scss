@@ -1,0 +1,46 @@
+.search-table{
+  background: #f3f7f9;
+}
+
+td{
+  padding: 5px!important;
+  padding-left: 16px!important;
+  vertical-align: middle !important;
+  p{
+    margin: 1px;
+    text-overflow: ellipsis;
+  }
+  button{
+    border: none;
+    background: transparent;
+    color: #7b92a6;
+    }
+}
+
+.search-bar{
+  border: 2px solid #7b92a6;
+  input{
+    min-width: 45vh;
+  }
+}
+
+.md-form input{
+  border: none;
+}:focus{
+  border: none!important;
+  box-shadow: none!important;
+}
+
+tr{
+  th{
+    font-weight: bold;
+    font-size: inherit
+  }
+}
+
+h5{
+  font-weight: bold;
+}
+
+
+

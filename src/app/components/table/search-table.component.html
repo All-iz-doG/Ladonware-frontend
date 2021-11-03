@@ -1,0 +1,102 @@
+<div class="px-3 search-table">
+  <div class="row d-flex justify-content-between">
+    <h5 class="my-auto ml-3">PRODUCTOS</h5>
+    <div class="md-form form-inline mr-3">
+      <div class="form-group bg-white px-3 py-1 mr-2 rounded search-bar">
+        <input type="text" [(ngModel)]="searchText" class="" placeholder="Buscar productos" id="search" mdbInput />
+        <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+      </div>
+      <button class="btn btn-md btn-primary ml-2" (click)="basicModal.show()">
+        <mdb-icon fas icon="plus" class="mr-2"></mdb-icon>Añadir Producto
+      </button>
+    </div>
+
+  </div>
+  <div class="z-depth-1 p-4 bg-white mb-3 rounded">
+    <h5 class="">Lista de Productos</h5>
+    <table mdbTable class="overflow-auto">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements; let i = index" scope="col">
+            {{head}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of elements; let i = index">
+          <th scope="row" style="display: none">{{el.id}}</th>
+          <td class="d-flex">
+            <div class="mr-2">
+              <img class="img-fluid" src="{{ el.imagen }}" alt="" width=80px>
+            </div>
+            <div>
+              <p>{{el.nombre}}</p>
+              <p>{{el.descripcion}}</p>
+            </div>
+          </td>
+          <td>{{el.categoria}}</td>
+          <td>{{el.precio}}</td>
+          <td>{{ el.cantidad }}</td>
+          <td class='{{ el.class }}'>
+            <small class="mr-2">
+              <mdb-icon fas icon="circle"></mdb-icon>
+            </small>
+            {{ el.inventario }}
+          </td>
+          <td>
+            <button (click)="updateProduct(el)" class="">
+              <mdb-icon fas icon="pencil-alt"></mdb-icon>
+            </button>
+            <button (click)="deleteProduct(el.id)" class="">
+              <mdb-icon far icon="trash-alt"></mdb-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal Agregar Producto -->
+  <div mdbModal #basicModal="mdbModal" id="basicModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">Añadir Producto</h4>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="" class="form-label">Nombre</label>
+            <input [(ngModel)]="producto.nombre" type="text" class="form-control" placeholder="Nombre del Producto" />
+            <label for="" class="form-label">Descripción</label>
+            <input [(ngModel)]="producto.descripcion" type="text" class="form-control" placeholder="Descripción del Producto" />
+            <label for="" class="form-label">Categoría</label>
+            <input [(ngModel)]="producto.categoria" type="text" class="form-control" placeholder="Categoría del Producto" />
+            <label for="" class="form-label">Precio</label>
+            <input [(ngModel)]="producto.precio" type="text" class="form-control" placeholder="Precio del Producto" />
+            <label for="" class="form-label">Cantidad</label>
+            <input [(ngModel)]="producto.cantidad" type="text" class="form-control" placeholder="Cantidad del Productonumber" class="form-control" placeholder="Cantidad del Producto" />
+            <label for="" class="form-label">Imagen</label>
+            <input [(ngModel)]="producto.imagen" type="text" class="form-control" placeholder="URL de la Imagen" />
+            <p class="form-text text-muted">
+              <small>
+                <strong>Nota:</strong> Utilizar una URL Para la imagen.
+              </small>
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button #modalCloser type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+            (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+          <button type="button" mdbBtn color="primary" class="relative waves-light"
+          (click)="addProduct()" mdbWavesEffect>Añadir Producto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
